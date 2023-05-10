@@ -15,10 +15,10 @@ from annotations import Annotations
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 
-# Define the MusicStructModel
-class MusicStructModel(nn.Module):
+# Define the MuSBoDModel
+class MuSBoDModel(nn.Module):
     def __init__(self):
-        super(MusicStructModel, self).__init__()
+        super(MuSBoDModel, self).__init__()
         self.conv1 = nn.Conv2d(3, 16, kernel_size=(3, 9))
         self.pool = nn.MaxPool2d(kernel_size=(1, 3))
         self.conv2 = nn.Conv2d(16, 32, kernel_size=(6, 10))
@@ -41,8 +41,8 @@ class MusicStructModel(nn.Module):
         output = torch.stack(output, dim=0)
         return output
 
-# Define the MusicStructDataset
-class MusicStructDataset(Dataset):
+# Define the MuSBoDDataset
+class MuSBoDDataset(Dataset):
     def __init__(self, root_dir):
         self.root_dir = root_dir
         self.image_files = sorted(os.listdir(root_dir))
@@ -77,11 +77,11 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     # Set the dataset and dataloader
-    dataset = MusicStructDataset("dataset")
+    dataset = MuSBoDDataset("dataset")
     dataloader = DataLoader(dataset, batch_size=32, shuffle=True)
 
     # Initialize the model
-    model = MusicStructModel().to(device)
+    model = MuSBoDModel().to(device)
 
     # Define the loss function and optimizer
     criterion = nn.BCEWithLogitsLoss()
@@ -119,11 +119,11 @@ if __name__ == "__main__":
     print("Training finished.")
 
     # Save the trained model
-    torch.save(model.state_dict(), "music_struct_model.pth")
+    torch.save(model.state_dict(), "MuSBoD.pth")
 
 # # Load the trained model
-# model = MusicStructModel()
-# model.load_state_dict(torch.load("music_struct_model.pth"))
+# model = MuSBoDModel()
+# model.load_state_dict(torch.load("MuSBoD.pth"))
 # 
 # # Set the model to evaluation mode
 # model.eval()

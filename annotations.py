@@ -1,3 +1,6 @@
+import torch
+import math
+
 class Annotations:
     @staticmethod
     def parse_annotation(annotation_path, W, H, audio_length):
