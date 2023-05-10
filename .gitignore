@@ -2,3 +2,4 @@ wav/
 mp3/
 dataset/
 annotations/
+__pycache__/
