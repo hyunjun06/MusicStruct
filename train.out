@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "music_struct_model.py", line 80, in <module>
+    for images, annotations in dataloader:
+  File "/src/gs22081/.virtualenvs/rne22081/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 634, in __next__
+    data = self._next_data()
+  File "/src/gs22081/.virtualenvs/rne22081/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 678, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/src/gs22081/.virtualenvs/rne22081/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/src/gs22081/.virtualenvs/rne22081/lib/python3.8/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "music_struct_model.py", line 44, in __getitem__
+    annotation = self.parse_annotation(annotation_path)
+  File "music_struct_model.py", line 59, in parse_annotation
+    padded_annotations = [annotation + [(0, '')] * (max_length - len(annotation)) for annotation in annotations]
+  File "music_struct_model.py", line 59, in <listcomp>
+    padded_annotations = [annotation + [(0, '')] * (max_length - len(annotation)) for annotation in annotations]
+TypeError: can only concatenate tuple (not "list") to tuple
