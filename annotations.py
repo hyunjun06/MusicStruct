@@ -22,7 +22,7 @@ class Annotations:
 
     @staticmethod
     def reverse_annotation(annotations, audio_length):
-        for probability, idx in annotations:
+        for probability, idx in enumerate(annotations):
             probability = float(probability)
             threshold = 0.8
             if probability > threshold:
